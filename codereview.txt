@@ -1,0 +1,9 @@
+1. Konstruktor wygląda jakby przypadkowo chciał pozwolić na przekazanie pustych parametrów. Przeglądając gety założyłem (może mylnie?) że nulle jednak nie są akceptowane.
+2. Przy moim założeniu metody decrementCounter i incrementCounter niepotrzebnie sprawdzają czy $price i $counter mogą być nullem.
+Jeśli założymy że Price musi być dodatnie to wyjątek "Invalid price" który jest w powyższych metodach uważam że powinien z nich wylecieć a znaleźć się jedynie w metodzie changePriceTo + ew. w konstruktorze.
+Jednak żeby testy przeszły poprawnie (również te nieobecne dla wartości ujemnych) wydzieliłem dla tych kilku przypadków metodę priceValidation.
+3. Metoda changePriceTo również niepotrzebnie sprawdza czy $counter jest nullem jak i $newPrice który musi być obiektem BigDecimal. Brakuje zaś w tym miejscu sprawdzania czy Price > 0 (chyba że to celowe założenie?)
+4. W metodzie replaceCharFromDesc wyjątek "null or empty desc" również można trochę uprościć. Dodatkowo można str_replace wrzucić do nowej metody, na tą chwilę trochę na wyrost, ale w razie jakiegokolwiek rozszerzenia może pomóc.
+5. Metodę formatDesc również można trochę krócej zapisać.
+
+Poza Tym nie jestem pewien czy właśnie o taką mniej więcej drobną refaktoryzację chodziło czy o zupełnie coś innego z zastosowaniem nie tylko kilku zasad ale pewnych wzorców.
